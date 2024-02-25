@@ -1,0 +1,17 @@
+name: Set CNAME
+
+on: page_build
+
+permissions:
+  contents: write
+
+jobs:
+  set-cname:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          echo "${{ github.repository_owner }}.git" > CNAME
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Set custom CNAME
